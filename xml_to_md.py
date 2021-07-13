@@ -2,6 +2,7 @@ import textwrap
 import markdown
 import html2text
 import xml.etree.ElementTree as ET
+from bs4 import BeautifulSoup
 
 # todo: read xml file from this line 'ET.parse('here will be the file name.xml')'
 mytree = ET.parse('Nuance Project.xml')
@@ -10,8 +11,11 @@ total_str = ''
 for data in root.findall('note'):
     content = data.find('content').text
     # print('\t' + html2text.html2text(content).strip())
+    soup = BeautifulSoup(content)
+    print(soup.get_text())
+
     content2 = html2text.html2text(content)
-    content3 = '\t'.join(content2.splitlines(True))
+    content3 = '\t'.join(soup.get_text().splitlines(True))
     # content3 = textwrap.indent(content2, '    ')
 
     title = '##' + data.find('title').text + '\n'
