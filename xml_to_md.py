@@ -11,8 +11,8 @@ for data in root.findall('note'):
     content = data.find('content').text
     # print('\t' + html2text.html2text(content).strip())
     content2 = html2text.html2text(content)
-    # content3 = '\t'.join(content2.splitlines(True))
-    content3 = textwrap.indent(content2.replace('\n', ''), '    ')
+    content3 = '\t'.join(content2.splitlines(True))
+    # content3 = textwrap.indent(content2, '    ')
 
     title = '##' + data.find('title').text + '\n'
     data_ins = title + content3 + '\n'
