@@ -10,9 +10,7 @@ root = mytree.getroot()
 total_str = ''
 for data in root.findall('note'):
     content = data.find('content').text
-    # print('\t' + html2text.html2text(content).strip())
-    soup = BeautifulSoup(content)
-    print(soup.get_text())
+    soup = BeautifulSoup(content, features="html.parser")
 
     # content2 = html2text.html2text(content)
     content2 = soup.get_text()
@@ -24,7 +22,7 @@ for data in root.findall('note'):
     total_str += data_ins
 
 # todo: the below line for creating markdown files 'open('your new markdown file name will be here.md', 'a', encoding='utf-8')'
-with open('demo.md', 'w', encoding='utf-8') as f:
+with open('final.md', 'w', encoding='utf-8') as f:
     f.write(total_str)
 
 
